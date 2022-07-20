@@ -2,7 +2,7 @@ import React from 'react'
 
 const register = () => {
   return (
-    <div className='bg-blue-100 h-screen flex justify-center items-center'>
+    <div className='bg-blue-100 md:bg-transparent h-screen flex justify-center items-center'>
       <form action='' className='w-full md:w-1/3 bg-blue-100 p-5 shadow-md'>
         <h1 className='font-bold text-2xl text-center mb-5'>Register</h1>
         <div className='mb-5'>
