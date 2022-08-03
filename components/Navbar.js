@@ -14,9 +14,9 @@ const Navbar = () => {
       >
         <AiOutlineMenu />
       </button>
-      <div className='hidden md:bg-white pr-5 w-screen top-0 left-0 md:flex md:justify-between py-2 items-center z-10 pl-5 md:text-black'>
-        <div className='pl-5 text-xl font-bold hidden md:inline'>
-          My Website
+      <div className='hidden md:bg-white pr-5 w-screen top-0 left-0 md:flex md:justify-between py-1 items-center z-10 pl-5 md:text-black'>
+        <div className='pl-5 text-xl text-orange-400 font-bold hidden md:inline'>
+          Talk<span className='text-blue-500'>Space</span>
         </div>
         <div className='flex flex-col md:flex-row md:items-center'>
           <LinkItem links='/' name='Home' />
@@ -38,7 +38,7 @@ const Navbar = () => {
       {visibility && (
         <div className='fixed bg-blue-500 pr-5 w-screen top-0 left-0 py-2 items-center z-10 pl-5 md:hidden'>
           <div className='pl-5 text-xl font-bold hidden md:inline'>
-            My Website
+            Talk<span className='text-blue-500'>Space</span>
           </div>
           <div className='flex flex-col'>
             <LinkItem links='/' name='Home' />

@@ -3,8 +3,8 @@ import { FaQuoteLeft } from 'react-icons/fa'
 
 const Review = ({ text, author }) => {
   return (
-    <div className='w-screen flex-none'>
-      <p className='px-10 md:px-20 md:text-center z-0'>
+    <div className='w-full flex-none'>
+      <p className='px-10 md:px-20 z-0'>
         <span className='inline-block'>
           <FaQuoteLeft />
         </span>
