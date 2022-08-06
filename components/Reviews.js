@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
-// import { reviewData } from '../data'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { Review, Header } from './'
 import axios from 'axios'
 import server from '../config'
 import { useDispatch, useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toast'
 
 const Reviews = ({ reviewData }) => {
   console.log(reviewData)
@@ -33,17 +33,21 @@ const Reviews = ({ reviewData }) => {
   }
 
   const handleSubmit = async () => {
-    const { data } = await axios.post(
-      `${server}/api/v1/reviews/${id}`,
-      {
-        author: username,
-        body: info,
-      },
-      {
-        headers: { authorization: `Bearer ${token}` },
-      }
-    )
-    console.log(data)
+    try {
+      const { data } = await axios.post(
+        `${server}/api/v1/reviews/123`,
+        {
+          author: username,
+          body: info,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      )
+      toast.success(data.msg)
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   return (
@@ -87,6 +91,7 @@ const Reviews = ({ reviewData }) => {
         </div>
       </div>
       <section className='mt-5 pb-5 px-5 md:px-10'>
+        <ToastContainer />
         <hr />
         <h2 className='mb-3 font-semibold text-2xl'>Leave a review</h2>
         <textarea

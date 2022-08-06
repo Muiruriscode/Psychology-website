@@ -5,7 +5,7 @@ import { addMessage, loadMessages } from '../features/chat/chat'
 import { useDispatch, useSelector } from 'react-redux'
 import server from '../config'
 import { io } from 'socket.io-client'
-
+import { ToastContainer, toast } from 'react-toast'
 import axios from 'axios'
 
 const ChatComponent = () => {
@@ -18,20 +18,24 @@ const ChatComponent = () => {
   const { messages } = useSelector((state) => state.chat)
 
   const handleClick = async () => {
-    const { data } = await axios.post(
-      `${server}/api/v1/messages/${id}`,
-      {
-        roomId: id,
-        sender: id,
-        body: info,
-      },
-      {
-        headers: { authorization: `Bearer ${token}` },
-      }
-    )
-    console.log(data)
-    setResponse(info)
-    setInfo('')
+    try {
+      const { data } = await axios.post(
+        `${server}/api/v1/messages/${id}`,
+        {
+          roomId: id,
+          sender: id,
+          body: info,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      )
+
+      setResponse(info)
+      setInfo('')
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   useEffect(() => {
@@ -53,7 +57,7 @@ const ChatComponent = () => {
       }
     }
     getMessages()
-  }, [id, token])
+  }, [id, token, dispatch])
 
   //  useEffect(() => {
   //     socket.current = io('ws://localhost:4000/')

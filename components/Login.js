@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import server from '../config'
 import Link from 'next/link'
+import { ToastContainer, toast } from 'react-toast'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -17,7 +18,7 @@ const Login = () => {
         password,
         email,
       })
-
+      toast.success(data.msg)
       if (data) {
         dispatch(
           addUserDetails({
@@ -30,6 +31,7 @@ const Login = () => {
         )
       }
     } catch (error) {
+      toast.error(error.message)
       console.log(error)
     }
   }
@@ -45,6 +47,7 @@ const Login = () => {
           Login
         </h1>
         <form onSubmit={handleSubmit} className='w-full px-5 py-2 bg-white '>
+          <ToastContainer />
           <div className='mb-5'>
             <label htmlFor='name' className='block mb-1'>
               Email:

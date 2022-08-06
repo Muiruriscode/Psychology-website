@@ -1,20 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Label from './Label'
-import Input from './Input'
+import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toast'
+import axios from 'axios'
+import server from '../config'
 
 const ContactForm = () => {
-  const handleClick = () => {}
+  const [name, setName] = useState('')
+  const [useremail, setUseremail] = useState('')
+  const [comment, setComment] = useState('')
+
+  const handleClick = async () => {
+    try {
+      const { data } = await axios.post(`${server}/api/v1/comments/`, {
+        email: useremail,
+        author: name,
+        comment,
+      })
+      toast.success(data.msg)
+    } catch (error) {
+      console.log(error)
+      toast.error(error.response.data.msg)
+    }
+  }
   return (
-    <form className=' p-5 '>
+    <form className=' p-5 w-full'>
+      <ToastContainer />
       <h2 className='font-semibold text-lg text-center'>Drop Me a line</h2>
       <p className='text-center mt-1'>Im Here for you. How can I help?</p>
       <div className='mb-2'>
         <Label name='Name:' />
-        <Input type='text' />
+        <input
+          type='name'
+          className='w-full p-1 border border-gray-300 rounded-sm'
+          placeholder='name'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
       <div className='mb-2'>
         <Label name='Email:' />
-        <Input type='email' />
+        <input
+          type='email'
+          className='w-full p-1 border border-gray-300 rounded-sm'
+          placeholder='email'
+          value={useremail}
+          onChange={(e) => setUseremail(e.target.value)}
+        />
       </div>
       <div className='mb-2'>
         <Label name='Comment:' />
@@ -24,6 +56,8 @@ const ContactForm = () => {
           cols='50'
           rows='8'
           className='block border border-gray-300 rounded-sm p-1 w-full'
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
         ></textarea>
       </div>
       <button

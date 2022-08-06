@@ -2,6 +2,7 @@ import axios from 'axios'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import server from '../config'
+import { ToastContainer, toast } from 'react-toast'
 
 const Register = () => {
   const [username, setUsername] = useState('')
@@ -18,9 +19,10 @@ const Register = () => {
         confirm,
       })
       if (data) {
-        console.log(data)
+        toast.success(data.msg)
       }
     } catch (error) {
+      toast.error(error.message)
       console.log(error)
     }
   }
@@ -41,6 +43,7 @@ const Register = () => {
           className='w-full px-5 py-2 bg-white '
           onSubmit={handleSubmit}
         >
+          <ToastContainer />
           <div className='mb-5'>
             <label htmlFor='name' className='block font-semibold'>
               Username:

@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { Layout, Reviews } from '../components'
+import { Layout, Reviews, Logo } from '../components'
 import { reviewData } from '../data'
 import axios from 'axios'
 import server from '../config'
 
 const reviews = ({ data: reviewData }) => {
-  console.log(reviewData)
   return (
     <section>
+      <Logo />
       <Layout />
       <Reviews reviewData={reviewData} />
     </section>

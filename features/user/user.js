@@ -20,9 +20,16 @@ const userSlice = createSlice({
       state.isAdmin = isAdmin
       state.token = token
     },
+    removeUser: (state) => {
+      state.email = ''
+      state.username = ''
+      state.id = 0
+      state.isAdmin = ''
+      state.token = ''
+    },
   },
 })
 
-export const { addUserDetails } = userSlice.actions
+export const { addUserDetails, removeUser } = userSlice.actions
 
 export default userSlice.reducer
