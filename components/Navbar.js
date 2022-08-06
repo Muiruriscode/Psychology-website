@@ -29,8 +29,8 @@ const Navbar = () => {
         <div className='flex flex-col md:flex-row md:items-center'>
           <LinkItem links='/' name='Home' />
           <LinkItem links='/about' name='About' />
-          <LinkItem links='/consult' name='Consult' />
-          <LinkItem links='/chat' name='Chat' />
+          {username && <LinkItem links='/consult' name='Consult' />}
+          {username && <LinkItem links='/chat' name='Chat' />}
           <LinkItem links='/reviews' name='Reviews' />
           <LinkItem links='/contact' name='Contact' />
 
@@ -66,8 +66,8 @@ const Navbar = () => {
           <div className='flex flex-col'>
             <LinkItem links='/' name='Home' />
             <LinkItem links='/about' name='About' />
-            <LinkItem links='/consult' name='Consult' />
-            <LinkItem links='/chat' name='Chat' />
+            {username && <LinkItem links='/consult' name='Consult' />}
+            {username && <LinkItem links='/chat' name='Chat' />}
             <LinkItem links='/reviews' name='Reviews' />
             <LinkItem links='/contact' name='Contact' />
 

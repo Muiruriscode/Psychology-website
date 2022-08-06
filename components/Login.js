@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { addUserDetails } from '../features/user/user'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import server from '../config'
 import Link from 'next/link'
 import { ToastContainer, toast } from 'react-toast'
+import Router from 'next/router'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { username } = useSelector((state) => state.user)
 
   const dispatch = useDispatch()
 
@@ -30,6 +32,7 @@ const Login = () => {
           })
         )
       }
+      Router.push('/')
     } catch (error) {
       toast.error(error.message)
       console.log(error)

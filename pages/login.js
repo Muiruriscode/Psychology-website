@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+
 import { Login } from '../components'
 
 const login = () => {
