@@ -16,7 +16,7 @@ const MessagesAdmin = () => {
       <Details number="No." author="Author" body="Message" header={true} />
 
       {data.map((item, index) => (
-    <div className={`flex items-center`}>
+    <div className={`flex items-center`} key={index}>
     	<div className="w-3/4 flex">
     	<div className="w-1/12 pl-2">
     	<p>{index+1}</p>
