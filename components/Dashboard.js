@@ -10,63 +10,63 @@ import {Sidebar} from "./"
 
 const DashBoard = () => {
 const {token} = useSelector(state => state.user)
-useEffect(() => {
-    try{
-        const getNewUsers = async () => {
-            const {data: users} = await axios.get(`${server}/api/v1/users/?new=true`, 
-{
-          headers: { authorization: `Bearer ${token}` },
-        }
-            )
-            console.log(users)
-        }
-        getNewUsers()
-    }catch(error){
-        console.log(error)
-    }
-   },[])
+// useEffect(() => {
+//     try{
+//         const getNewUsers = async () => {
+//             const {data: users} = await axios.get(`${server}/api/v1/users/?new=true`, 
+// {
+//           headers: { authorization: `Bearer ${token}` },
+//         }
+//             )
+//             console.log(users)
+//         }
+//         getNewUsers()
+//     }catch(error){
+//         console.log(error)
+//     }
+//    },[])
 
-useEffect(() => {
-    try{
-        const getNewReviews = async () => {
-            const {data: reviews} = await axios.get(`${server}/api/v1/reviews?new=true`,{
-          headers: { authorization: `Bearer ${token}` },
-        })
-            console.log(reviews)
-        }
-        getNewReviews()
-    }catch(error){
-        console.log(error)
-    }
-   },[])
+// useEffect(() => {
+//     try{
+//         const getNewReviews = async () => {
+//             const {data: reviews} = await axios.get(`${server}/api/v1/reviews?new=true`,{
+//           headers: { authorization: `Bearer ${token}` },
+//         })
+//             console.log(reviews)
+//         }
+//         getNewReviews()
+//     }catch(error){
+//         console.log(error)
+//     }
+//    },[])
 
-useEffect(() => {
-    try{
-        const getNewComments = async () => {
-            const {data: comments} = await axios.get(`${server}/api/v1/comments?new=true`, {
-          headers: { authorization: `Bearer ${token}` },
-        })
-            console.log(comments)
-        }
-        getNewComments()
-    }catch(error){
-        console.log(error)
-    }
-   },[])
+// useEffect(() => {
+//     try{
+//         const getNewComments = async () => {
+//             const {data: comments} = await axios.get(`${server}/api/v1/comments?new=true`, {
+//           headers: { authorization: `Bearer ${token}` },
+//         })
+//             console.log(comments)
+//         }
+//         getNewComments()
+//     }catch(error){
+//         console.log(error)
+//     }
+//    },[])
 
-useEffect(() => {
-    try{
-        const getNewConsults = async () => {
-            const {data: consults} = await axios.get(`${server}/api/v1/consults?new=true`, {
-          headers: { authorization: `Bearer ${token}` },
-        })
-            console.log(users)
-        }
-        getNewConsults()
-    }catch(error){
-        console.log(error)
-    }
-   },[])
+// useEffect(() => {
+//     try{
+//         const getNewConsults = async () => {
+//             const {data: consults} = await axios.get(`${server}/api/v1/consults?new=true`, {
+//           headers: { authorization: `Bearer ${token}` },
+//         })
+//             console.log(users)
+//         }
+//         getNewConsults()
+//     }catch(error){
+//         console.log(error)
+//     }
+//    },[])
 
   return (
     <div className="md:flex px-2 md:px-5">
