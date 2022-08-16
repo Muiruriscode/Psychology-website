@@ -7,7 +7,7 @@ import { removeUser } from '../features/user/user'
 
 const Navbar = () => {
   const [visibility, setVisibility] = useState(false)
-  const { username } = useSelector((state) => state.user)
+  const { username, isAdmin } = useSelector((state) => state.user)
   const dispatch = useDispatch()
 
   const Logout = () => {
@@ -27,6 +27,7 @@ const Navbar = () => {
           Talk<span className='text-blue-500'>Space</span>
         </div>
         <div className='flex flex-col md:flex-row md:items-center'>
+          <LinkItem links='/dashboard' name='Admin' />
           <LinkItem links='/' name='Home' />
           <LinkItem links='/about' name='About' />
           {username && <LinkItem links='/consult' name='Consult' />}

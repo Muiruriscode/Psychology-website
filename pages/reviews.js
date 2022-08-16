@@ -16,7 +16,6 @@ const reviews = ({ data: reviewData }) => {
 
 export async function getServerSideProps() {
   const { data } = await axios.get(`${server}/api/v1/reviews/`)
-  console.log('data', data)
   return {
     props: {
       data,

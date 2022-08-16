@@ -22,8 +22,11 @@ const Register = () => {
         toast.success(data.msg)
       }
     } catch (error) {
-      toast.error(error.message)
-      console.log(error)
+      if(error.response.data.msg){
+        toast.error(error.response.data.msg)
+      }else{
+        toast.error(error.message)
+      }
     }
   }
 
