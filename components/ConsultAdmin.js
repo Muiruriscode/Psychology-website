@@ -1,37 +1,48 @@
-import {useEffect} from "react"
-import {  Details } from './'
-import server from "../config"
-import axios from "axios"
-
+import { useEffect, useState } from 'react'
+import { Details } from './'
+import server from '../config'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 const data = [
-{user: "dennis", created: "1-1-20202"},
-{user: "Miriam", created: "1-1-20202"},
-{user: "Kelvin", created: "1-1-20202"},
-{user: "Thomas", created: "1-1-20202"},
+  { user: 'dennis', created: '1-1-2022' },
+  { user: 'Miriam', created: '1-1-2022' },
+  { user: 'Kelvin', created: '1-1-2022' },
+  { user: 'Thomas', created: '1-1-2022' },
 ]
 
 const ConsultAdmin = () => {
-	useEffect(() => {
-		try{
-	const getConsults = async () => {
-		const { data } = await axios.get(`${server}/api/v1/consults/`)
-		console.log(data)
-	}
-	getConsults()
-}
-		catch(error){
-			console.log(error)
-		}
-	})
+  const [consult, setConsult] = useState([])
+  const { token } = useSelector((state) => state.user)
+  useEffect(() => {
+    try {
+      const getConsults = async () => {
+        const { data } = await axios.get(`${server}/api/v1/consults/`, {
+          headers: { authorization: `Bearer ${token}` },
+        })
+        setConsult(data)
+        console.log(data)
+      }
+      getConsults()
+    } catch (error) {
+      console.log(error)
+    }
+  }, [token])
   return (
-  <>  
-      <Details number="No." author="Client" body="Date" header={true} />
+    <>
+      <Details number='No.' username='Client' body='Date' header={true} />
 
-      {data.map((item, index) => (
-
-        <Details key={index} number={index} author={item.user} body={item.created} header={false} dest="consultations"/>
+      {consult.map((item, index) => (
+        <Details
+          key={item._id}
+          number={index}
+          username={item.client}
+          body={item.date}
+          header={false}
+          id={item._id}
+          dest='consults'
+        />
       ))}
-  </>
+    </>
   )
 }
 export default ConsultAdmin

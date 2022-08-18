@@ -12,10 +12,10 @@ const Meta = ({ title, description, keywords }) => {
 }
 
 Meta.defaultProps = {
-  title: 'Talk space',
+  title: 'TalkSpace Kenya',
   description:
-    'Talk space is where you can get to talk about your issues and get valuable help from the psychologist, Morrin Macharia',
-  keywords: 'therapy, Maorrin macharia, depression, anxiety',
+    'TalkSpace Kenya is where you can get to talk about your issues and get valuable help from the psychologist, Morrin Macharia',
+  keywords: 'therapy, Morrin Macharia, depression, anxiety, Talkspace kenya',
 }
 
 export default Meta

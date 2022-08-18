@@ -1,36 +1,49 @@
-import {useEffect} from "react"
-import {  Details } from './'
-import server from "../config"
-import axios from "axios"
+import { useEffect, useState } from 'react'
+import { Details } from './'
+import server from '../config'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
-const data = [
-{user: "dennis", created: "1-1-20202"},
-{user: "Miriam", created: "1-1-20202"},
-{user: "Kelvin", created: "1-1-20202"},
-{user: "Thomas", created: "1-1-20202"},
-]
 const UsersAdmin = () => {
-	useEffect(() => {
-	try{
-	const getUsers = async () => {
-		const { data } = await axios.get(`${server}/api/v1/consults/`)
-		console.log(data)
-	}
-	getUsers()
-}
-		catch(error){
-			console.log(error)
-		}
-	})
+  const [user, setUser] = useState([])
+  const { token } = useSelector((state) => state.user)
+
+  useEffect(() => {
+    try {
+      const getUsers = async () => {
+        const { data } = await axios.get(`${server}/api/v1/users/`, {
+          headers: { authorization: `Bearer ${token}` },
+        })
+        console.log(data)
+        setUser(data)
+      }
+      getUsers()
+    } catch (error) {
+      console.log(error)
+    }
+  }, [token])
 
   return (
-  <>	
-      <Details number="No." author="Username" body="Created At" header={true} />
-    	{data.map((item, index) => (
-
-        <Details key={index} number={index} author={item.user} body={item.created} header={false} dest="users" />
+    <>
+      <Details
+        number='No.'
+        username='Username'
+        body='Created At'
+        header={true}
+      />
+      {user.map((item, index) => (
+        <Details
+          key={item._id}
+          number={index}
+          username={item.username}
+          email={item.email}
+          body={item.email}
+          header={false}
+          dest='users'
+          id={item._id}
+        />
       ))}
-  </>
+    </>
   )
 }
 

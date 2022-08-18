@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   messages: [],
@@ -15,9 +15,12 @@ const messageSlice = createSlice({
     loadMessages: (state, action) => {
       state.messages = action.payload
     },
+    clearMessages: (state) => {
+      state.messages = []
+    },
   },
 })
 
-export const { addMessage, loadMessages } = messageSlice.actions
+export const { addMessage, loadMessages, clearMessages } = messageSlice.actions
 
 export default messageSlice.reducer

@@ -14,11 +14,16 @@ import {
   Layout,
   Social,
   Logo,
+  Meta,
 } from '../components'
 
 const contact = () => {
   return (
     <>
+      <Meta
+        title='Contact'
+        description='Contact Morrin Macharia on TalkSpace kenya'
+      />
       <Logo />
       <Layout />
       <div className='px-5'>

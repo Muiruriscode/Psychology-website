@@ -19,19 +19,18 @@ const ChatComponent = () => {
 
   const handleClick = async () => {
     try {
-      const { data } = await axios.post(
-        `${server}/api/v1/messages/${id}`,
-        {
-          roomId: id,
-          sender: id,
-          body: info,
-        },
-        {
-          headers: { authorization: `Bearer ${token}` },
-        }
-      )
-
-      setResponse(info)
+      // const { data } = await axios.post(
+      //   `${server}/api/v1/messages/${id}`,
+      //   {
+      //     roomId: id,
+      //     sender: id,
+      //     body: info,
+      //   },
+      //   {
+      //     headers: { authorization: `Bearer ${token}` },
+      //   }
+      // )
+      dispatch(addMessage({ body: info }))
       setInfo('')
     } catch (error) {
       toast.error(error.message)
@@ -63,12 +62,12 @@ const ChatComponent = () => {
   //     socket.current = io('ws://localhost:4000/')
   //   }, [])
 
-  useEffect(() => {
-    // socket.current.on('getMessage', (body) => {
-    //   setResponse(body)
-    // })
-    dispatch(addMessage({ body: response }))
-  }, [dispatch, response])
+  // useEffect(() => {
+  //   // socket.current.on('getMessage', (body) => {
+  //   //   setResponse(body)
+  //   // })
+  //   dispatch(addMessage({ body: response }))
+  // }, [dispatch, response])
 
   return (
     <div className='md:px-10'>
@@ -81,6 +80,8 @@ const ChatComponent = () => {
             messages.map((message, index) => (
               <Messages key={index} text={message.body} />
             ))
+          ) : messages.length === 1 ? (
+            <Messages text={messages[0].body} />
           ) : (
             <p className='text-gray-300 text-xl text-center mt-5'>
               Send me a message...

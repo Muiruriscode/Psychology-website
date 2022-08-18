@@ -14,8 +14,6 @@ const Verify = () => {
 
   const { token, email } = router.query
   useEffect(() => {
-    console.log('email', email)
-    console.log('token', token)
     const verifyEmailAdress = async () => {
       try {
         if (email && token) {

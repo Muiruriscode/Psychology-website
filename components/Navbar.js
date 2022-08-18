@@ -4,6 +4,7 @@ import LinkItem from './LinkItem'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeUser } from '../features/user/user'
+import { clearMessages } from '../features/chat/chat'
 
 const Navbar = () => {
   const [visibility, setVisibility] = useState(false)
@@ -12,6 +13,7 @@ const Navbar = () => {
 
   const Logout = () => {
     dispatch(removeUser())
+    dispatch(clearMessages)
   }
 
   return (
@@ -27,7 +29,7 @@ const Navbar = () => {
           Talk<span className='text-blue-500'>Space</span>
         </div>
         <div className='flex flex-col md:flex-row md:items-center'>
-          <LinkItem links='/dashboard' name='Admin' />
+          {username && <LinkItem links='/dashboard' name='Admin' />}
           <LinkItem links='/' name='Home' />
           <LinkItem links='/about' name='About' />
           {username && <LinkItem links='/consult' name='Consult' />}

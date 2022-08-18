@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toast'
 
 const Reviews = ({ reviewData }) => {
-  console.log(reviewData)
   const [index, setIndex] = useState(1)
   const [info, setInfo] = useState('')
   const reviewRef = useRef()
@@ -35,7 +34,7 @@ const Reviews = ({ reviewData }) => {
   const handleSubmit = async () => {
     try {
       const { data } = await axios.post(
-        `${server}/api/v1/reviews/123`,
+        `${server}/api/v1/reviews/${id}`,
         {
           author: username,
           body: info,
@@ -46,9 +45,10 @@ const Reviews = ({ reviewData }) => {
       )
       toast.success(data.msg)
     } catch (error) {
-      if(error.response.data.msg){
-        toast.error(error.response.data.msg)
-      }else{
+      console.log(error)
+      toast.error(error.message)
+      if (error.response.data?.msg) {
+      } else {
         toast.error(error.message)
       }
     }
@@ -94,28 +94,30 @@ const Reviews = ({ reviewData }) => {
           </div>
         </div>
       </div>
-      <section className='mt-5 pb-5 px-5 md:px-10'>
-        <ToastContainer />
-        <hr />
-        <h2 className='mb-3 font-semibold text-2xl'>Leave a review</h2>
-        <textarea
-          name='comment'
-          id='comment'
-          cols='40'
-          rows='7'
-          className='block border border-gray-500 rounded-sm p-1 w-full'
-          value={info}
-          onChange={(e) => setInfo(e.target.value)}
-        ></textarea>
-        <div className='flex mt-2'>
-          <button
-            className='transition-all duration-200 ease bg-blue-500 flex justify-center items-center cursor-pointer flex-none hover:bg-blue-600 text-white text-lg w-50 py-2 px-5 rounded-full ring ring-blue-400 hover:ring-blue-500 font-semibold'
-            onClick={handleSubmit}
-          >
-            Send Review
-          </button>
-        </div>
-      </section>
+      {username && (
+        <section className='mt-5 pb-5 px-5 md:px-10'>
+          <ToastContainer />
+          <hr />
+          <h2 className='mb-3 font-semibold text-2xl'>Leave a review</h2>
+          <textarea
+            name='comment'
+            id='comment'
+            cols='40'
+            rows='7'
+            className='block border border-gray-500 rounded-sm p-1 w-full'
+            value={info}
+            onChange={(e) => setInfo(e.target.value)}
+          ></textarea>
+          <div className='flex mt-2'>
+            <button
+              className='transition-all duration-200 ease bg-blue-500 flex justify-center items-center cursor-pointer flex-none hover:bg-blue-600 text-white text-lg w-50 py-2 px-5 rounded-full ring ring-blue-400 hover:ring-blue-500 font-semibold'
+              onClick={handleSubmit}
+            >
+              Send Review
+            </button>
+          </div>
+        </section>
+      )}
     </div>
   )
 }

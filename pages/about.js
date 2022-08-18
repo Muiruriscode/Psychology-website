@@ -1,11 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
 import afro from '../assets/afro-tr.png'
-import { Header, Layout, Logo } from '../components'
+import { Header, Layout, Logo, Meta } from '../components'
 
 const about = () => {
   return (
     <>
+    <Meta title="About Morrin Macharia" description="This is a short biography about Morrin Macharia a Psychologist" />
       <Layout />
       <div className='px-5'>
         <Logo />

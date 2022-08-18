@@ -16,7 +16,7 @@ const MessagesAdmin = () => {
       <Details number='No.' author='Author' body='Message' header={true} />
 
       {data.map((item, index) => (
-        <MessageData key={index} item={item} />
+        <MessageData key={index} item={item} index={index} />
       ))}
     </>
   )

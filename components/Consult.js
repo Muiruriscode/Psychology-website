@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Input } from '../components'
 import axios from 'axios'
 import server from '../config'
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toast'
 
 const Consult = () => {
   const [index, setIndex] = useState(0)
@@ -9,15 +11,27 @@ const Consult = () => {
   const [help, setHelp] = useState([])
   const [date, setDate] = useState('')
 
+  const { token, username } = useSelector((state) => state.user)
+  const router = useRouter()
+  const { service } = router.query
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.post(`${server}/api/v1/consults/`, {
-        gender,
-        help,
-        date,
-      })
-      console.log(data)
+      const { data } = await axios.post(
+        `${server}/api/v1/consults/`,
+        {
+          gender,
+          help,
+          date,
+          service,
+          client: username,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      )
+      toast.success(data.msg)
     } catch (error) {
       console.log(error)
     }
@@ -108,7 +122,7 @@ const Consult = () => {
                   id='seven'
                   className='p-3 cursor-pointer'
                   value='Need to improve my life'
-                  onChange={() => setHelp([...help, e.target.value])}
+                  onChange={(e) => setHelp([...help, e.target.value])}
                 />
                 <span className='ml-3 text-xl'>Need to improve my life</span>
               </label>
@@ -182,6 +196,7 @@ const Consult = () => {
     return (
       <div className='flex justify-center mt-20'>
         <div className='flex flex-col gap-5 p-5 border border-blue-300 shadow-md rounded-md'>
+          <ToastContainer />
           <h2 className='text-2xl font-semibold mb-2 text-center'>
             Schedule consultation
           </h2>

@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Reset, Verify } from '../../components'
+import { Verify, Meta } from '../../components'
 
 const verify = () => {
   return (
     <article className=' h-screen flex justify-center items-center'>
+      <Meta title='User reset password on Talkspace Kenya' />
       <Verify />
     </article>
   )

@@ -1,6 +1,7 @@
+import Link from 'next/link'
 import React from 'react'
 
-const MessageData = ({ item }) => {
+const MessageData = ({ item, index }) => {
   return (
     <div className={`flex items-center`}>
       <div className='w-3/4 flex'>
@@ -14,7 +15,7 @@ const MessageData = ({ item }) => {
       </div>
       <div className='flex justify-around items-center w-1/4'>
         <button className='bg-blue-200 my-1 rounded-sm px-2 py-1 font-semibold text-orange-600 hover:bg-blue-300'>
-          Reply
+          <Link href='/chat'>Reply</Link>
         </button>
         <p>Delete</p>
       </div>
