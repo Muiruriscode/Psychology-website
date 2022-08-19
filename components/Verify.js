@@ -2,15 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { server } from '../config'
+import server from '../config'
 
 const Verify = () => {
-  // const [email, setEmail] = useState('')
-  // const [verificationToken, setVerificationToken] = useState('')
   const router = useRouter()
-  // console.log(router.query)
-  // setEmail(token)
-  // setVerificationToken(myEmail)
 
   const { token, email } = router.query
   useEffect(() => {
@@ -18,7 +13,7 @@ const Verify = () => {
       try {
         if (email && token) {
           const { data } = await axios.post(
-            `http://localhost:5000/api/v1/auth/verify-email`,
+            `${server}/api/v1/auth/verify-email`,
             {
               verificationToken: token,
               email,

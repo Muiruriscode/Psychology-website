@@ -29,7 +29,7 @@ const Navbar = () => {
           Talk<span className='text-blue-500'>Space</span>
         </div>
         <div className='flex flex-col md:flex-row md:items-center'>
-          {username && <LinkItem links='/dashboard' name='Admin' />}
+          {isAdmin && <LinkItem links='/dashboard' name='Admin' />}
           <LinkItem links='/' name='Home' />
           <LinkItem links='/about' name='About' />
           {username && <LinkItem links='/consult' name='Consult' />}
@@ -55,7 +55,7 @@ const Navbar = () => {
               <Link href='/register'>Get Started</Link>
             </button>
           ) : (
-            <p className='text-xl mr-3 rounded-md px-3 pb-2 flex items-center shadow-xl font-semibold bg-orange-400 py-1'>
+            <p className='text-xl mr-3 rounded-lg px-3 pb-2 flex items-center shadow-xl font-semibold bg-orange-100 py-1'>
               {username}
             </p>
           )}
@@ -67,6 +67,7 @@ const Navbar = () => {
             Talk<span className='text-blue-500'>Space</span>
           </div>
           <div className='flex flex-col'>
+            {isAdmin && <LinkItem links='/dashboard' name='Admin' />}
             <LinkItem links='/' name='Home' />
             <LinkItem links='/about' name='About' />
             {username && <LinkItem links='/consult' name='Consult' />}

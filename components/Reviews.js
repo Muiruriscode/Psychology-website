@@ -3,7 +3,7 @@ import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { Review, Header } from './'
 import axios from 'axios'
 import server from '../config'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toast'
 
 const Reviews = ({ reviewData }) => {

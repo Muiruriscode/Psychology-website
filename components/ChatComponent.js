@@ -8,22 +8,22 @@ import { io } from 'socket.io-client'
 import { ToastContainer, toast } from 'react-toast'
 import axios from 'axios'
 
-const ChatComponent = () => {
+const ChatComponent = ({ senderId, other }) => {
   const [info, setInfo] = useState('')
   const [response, setResponse] = useState([])
   const scrollRef = useRef()
   const socket = useRef()
   const dispatch = useDispatch()
-  const { id, token, username } = useSelector((state) => state.user)
+  const { id, token } = useSelector((state) => state.user)
   const { messages } = useSelector((state) => state.chat)
 
   const handleClick = async () => {
     try {
       // const { data } = await axios.post(
-      //   `${server}/api/v1/messages/${id}`,
+      //   `${server}/api/v1/messages/${senderId ? senderId : id}`,
       //   {
-      //     roomId: id,
-      //     sender: id,
+      //     roomId: senderId ? senderId : id,
+      //     sender: senderId ? senderId : id,
       //     body: info,
       //   },
       //   {

@@ -1,19 +1,26 @@
 import axios from 'axios'
 import Link from 'next/link'
+import { ToastContainer, toast } from 'react-toast'
 
 const Details = ({ number, username, body, header, id, dest, email }) => {
   const deleteInfo = async () => {
     try {
       const { data } = await axios.delete(`${server}/api/v1/${dest}/${id}`)
       console.log(data)
+      toast.success(data.msg)
     } catch (error) {
-      console.log(error)
+      if (error.response.data?.msg) {
+        toast.error(error.response.data.msg)
+      } else {
+        toast.error(error.message)
+      }
     }
   }
   console.log('username', username, email)
   return (
     <div className={`flex ${header && 'font-semibold bg-orange-200'}`}>
       <div className='w-3/4 flex'>
+        <ToastContainer />
         <div className='w-2/12 pl-2'>
           <p>{`${!header ? number + 1 : number}`}</p>
         </div>

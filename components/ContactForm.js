@@ -19,7 +19,6 @@ const ContactForm = () => {
       })
       toast.success(data.msg)
     } catch (error) {
-      console.log(error)
       if (error.response.data?.msg) {
         toast.error(error.response.data.msg)
       } else {

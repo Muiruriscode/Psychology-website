@@ -34,7 +34,11 @@ const Login = () => {
       }
       Router.push('/')
     } catch (error) {
-      toast.error('Incorrect email or password')
+      if (error.response.data?.msg) {
+        toast.error(error.response.data.msg)
+      } else {
+        toast.error(error.message)
+      }
     }
   }
 

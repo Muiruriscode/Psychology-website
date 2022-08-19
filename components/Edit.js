@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Label, Button } from './'
 import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toast'
 
 const Edit = ({ dest, body, username, email, id }) => {
   const [user, setUser] = useState(username)
@@ -23,6 +24,7 @@ const Edit = ({ dest, body, username, email, id }) => {
             headers: { authorization: `Bearer ${token}` },
           }
         )
+        toast.success(data.msg)
         console.log(data)
       }
       if (dest === 'reviews') {
@@ -37,6 +39,7 @@ const Edit = ({ dest, body, username, email, id }) => {
             headers: { authorization: `Bearer ${token}` },
           }
         )
+        toast.success(data.msg)
         console.log(data)
       }
       if (dest === 'consults') {
@@ -50,16 +53,22 @@ const Edit = ({ dest, body, username, email, id }) => {
             headers: { authorization: `Bearer ${token}` },
           }
         )
+        toast.success(data.msg)
         console.log(data)
       }
     } catch (error) {
-      console.log(error)
+      if (error.response.data?.msg) {
+        toast.error(error.response.data.msg)
+      } else {
+        toast.error(error.message)
+      }
     }
   }
 
   if (dest === 'users') {
     return (
       <section className='flex h-screen justify-center items-center'>
+        <ToastContainer />
         <div className='flex flex-col gap-5'>
           <h1 className='text-2xl text-blue-500 text-center font-semibold'>
             Update user
@@ -90,6 +99,7 @@ const Edit = ({ dest, body, username, email, id }) => {
   if (dest === 'comments' || dest === 'reviews') {
     return (
       <section className='flex h-screen justify-center items-center'>
+        <ToastContainer />
         <div className='flex flex-col gap-5'>
           <h1 className='text-2xl text-blue-500 text-center font-semibold'>
             Update {dest}
@@ -129,6 +139,7 @@ const Edit = ({ dest, body, username, email, id }) => {
   if (dest === 'consults') {
     return (
       <section className='flex h-screen justify-center items-center'>
+        <ToastContainer />
         <div className='flex flex-col gap-5'>
           <h1 className='text-2xl text-blue-500 text-center font-semibold'>
             Update consult

@@ -4,10 +4,10 @@ import server from '../config'
 import axios from 'axios'
 
 const data = [
-  { user: 'dennis', created: '1-1-20202' },
-  { user: 'Miriam', created: '1-1-20202' },
-  { user: 'Kelvin', created: '1-1-20202' },
-  { user: 'Thomas', created: '1-1-20202' },
+  { user: 'dennis', body: '1-1-20202' },
+  { user: 'Miriam', body: '1-1-20202' },
+  { user: 'Kelvin', body: '1-1-20202' },
+  { user: 'Thomas', body: '1-1-20202' },
 ]
 
 const MessagesAdmin = () => {
